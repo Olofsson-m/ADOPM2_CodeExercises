@@ -16,10 +16,35 @@ class Program
     {
         Boxmodel, Mustang_GT, XF, Civic
     }
-    class Car
+    struct Car
     {
-        public CarColor Color;
+        public CarColor Color { get; init; }
+        public CarBrand Brand { get; init; }
+        public CarModel Model { get; init; }
 
+        public Car(SeedGenerator _seeder)
+        {
+            Color = _seeder.FromEnum<CarColor>();
+            Brand = _seeder.FromEnum<CarBrand>();
+            Model = _seeder.FromEnum<CarModel>();
+        }
+        public Car(CarColor color, CarBrand brand, CarModel model)
+        {
+            Color = color;
+            Brand = brand;
+            Model = model;
+        }
+        public Car(Car other)
+        {
+            Color = other.Color;
+            Brand = other.Brand;
+            Model = other.Model;
+        }
+
+        public override string ToString()
+        {
+            return $"I am a {Color} {Brand} {Model}";
+        }
     }
 
 
@@ -40,7 +65,38 @@ class Program
         //A random enCarModel
         Console.WriteLine(rnd.FromEnum<CarModel>());
         #endregion
+        Car car1 = new Car(rnd);
+        Car car2 = new Car(rnd);
+        Car car3 = new Car(rnd) {Brand = CarBrand.Ford, Model = CarModel.Civic};
+        Car car4 = new Car(CarColor.Red, CarBrand.Ford, CarModel.Mustang_GT);
+        Console.WriteLine(car1.ToString());
+        Console.WriteLine();
+        Console.WriteLine(car2.ToString());
+        Console.WriteLine();
+        Console.WriteLine(car3.ToString());
+        Console.WriteLine();
+        Console.WriteLine(car4.ToString());
+        Car[] carArray = new Car[10];
 
+        System.Console.WriteLine("Original!");
+        for (int i = 0; i < carArray.Length; i++)
+        {
+            carArray[i] = new Car(rnd) {Color = CarColor.Burgundy};
+            Console.WriteLine($"{i + 1}: {carArray[i].ToString()}");
+            Console.WriteLine();
+        }
+
+        Car[] copyOfCars = new Car[10];
+
+        for (int i = 0; i < copyOfCars.Length; i++)
+        {
+            copyOfCars[i] = carArray[i];
+        }
+        System.Console.WriteLine("Copied array!");
+        for (int i = 0; i < copyOfCars.Length; i++)
+        {
+            Console.WriteLine(copyOfCars[i].ToString());
+        }
     }
 
     //Exercises:

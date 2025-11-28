@@ -8,7 +8,36 @@ namespace _03_Pearls;
 
 
 public enum Season { Winter, Summer, Fall}
+class Pearl
+{
+    public int Size { get; }
+    public string Color { get; }
+    public string Shape { get; }
+    public string Type { get; }
 
+    private static readonly string[] Colors = { "Black", "White", "Pink" };
+    private static readonly string[] Shapes = { "Round", "Teardrop" };
+    private static readonly string[] Types = { "Freshwater", "Saltwater" };
+    public Pearl(SeedGenerator seeder)
+    {
+        Size = seeder.Next(5, 26); // Diameter between 5mm and 25mm
+        Color = Colors[seeder.Next(0, Colors.Length)];
+        Shape = Shapes[seeder.Next(0, Shapes.Length)];
+        Type = Types[seeder.Next(0, Types.Length)];
+    }
+    public Pearl(Pearl other)
+    {
+        Size = other.Size;
+        Color = other.Color;
+        Shape = other.Shape;
+        Type = other.Type;
+    }
+
+    public override string ToString()
+    {
+        return $"Pearl - Size: {Size}mm, Color: {Color}, Shape: {Shape}, Type: {Type}";
+    }
+}
 class Program
 {
     static void Main(string[] args)
@@ -42,7 +71,12 @@ class Program
         Console.WriteLine("Hello, World!");
 
         var rnd = new SeedGenerator();
+        Pearl pearl = new Pearl(rnd);
 
+        var Pearl2 = new Pearl(pearl);
+
+        Console.WriteLine(pearl.ToString());
+        Console.WriteLine($"Kopia: {Pearl2.ToString()}");
         Console.WriteLine(rnd.Next(5, 26));
         Console.WriteLine(rnd.FromEnum<Season>());
 
