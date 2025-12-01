@@ -4,7 +4,7 @@ using Seido.Utilities.SeedGenerator;
 
 namespace _07_IEquatable_IComparable
 {
-    public class Necklace : IEquatable<Necklace>
+    public class Necklace
     {
         public List<Pearl> ListOfPearls { get; set; } = new List<Pearl>();
         public string Name { get; set; }
@@ -17,21 +17,6 @@ namespace _07_IEquatable_IComparable
                 sRet += $"\n{item.ToString()}";
             }
             return sRet;
-        }
-
-        public bool Equals(Necklace other)
-        {
-            if (this.Name != other.Name)
-                return false;
-            if (this.ListOfPearls.Count != other.ListOfPearls.Count)
-                return false;
-
-            for (int i = 0; i < this.ListOfPearls.Count; i++)
-            {
-                if (this.ListOfPearls[i] != other.ListOfPearls[i])
-                    return false;
-            }
-            return true;
         }
 
         public Necklace(string name)

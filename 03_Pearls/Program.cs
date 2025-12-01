@@ -92,7 +92,7 @@ class Program
 //
 // 2. När pärlan väl är skapad så ska man inte kunna ändra den.
 
-// 3. Gör om constructor Pearl(csSeedGenerator _seeder) som initierar en slumpmässig pärla
+// 3. Gör om constructor Pearl(SeedGenerator _seeder) som initierar en slumpmässig pärla
 
 // 4. Skapa en ToString i din pärlklass som presenterar pärlan.
 //

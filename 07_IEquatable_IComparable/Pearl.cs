@@ -10,7 +10,7 @@ namespace _07_IEquatable_IComparable
     public enum PearlType { FreshWater, SaltWater }
 
     #region Pearl as a class
-    public class Pearl : IEquatable<Pearl>, IComparable<Pearl>
+    public class Pearl 
     {
         public int Size { get; set; }
         public PearlColor Color { get; init; }
@@ -19,24 +19,6 @@ namespace _07_IEquatable_IComparable
 
         public override string ToString() => $"{Size}mm {Color} {Shape} {Type} pearl.";
 
-        public bool Equals(Pearl other) => (this.Size, this.Color, this.Shape, this.Type) ==
-            (other.Size, other.Color, other.Shape, other.Type);
-
-        //Needed to implement as part of IEquatable
-        public override bool Equals(object obj) => Equals(obj as Pearl);
-        public override int GetHashCode() => (this.Size, this.Color, this.Shape, this.Type).GetHashCode();
-
-        
-        public int CompareTo(Pearl other)
-        {
-            return other.Size.CompareTo(this.Size);
-        }
-
-
-        #region operator overloading
-        public static bool operator ==(Pearl o1, Pearl o2) => o1.Equals(o2);
-        public static bool operator !=(Pearl o1, Pearl o2) => !o1.Equals(o2);
-        #endregion
 
         public Pearl() { }
         public Pearl(SeedGenerator _seeder)

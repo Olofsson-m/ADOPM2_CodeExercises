@@ -21,12 +21,12 @@ class Program
 
         Console.WriteLine(p2_copy == p2);
 
-        var n1 = new Necklace(5, "my necklace");
-        n1.ListOfPearls.Sort();
+        var n1 = new Necklace(10, "my necklace");
+        //n1.ListOfPearls.Sort();
         Console.WriteLine(n1);
 
-        var n2 = new Necklace(5, "my necklace");
-        n2.ListOfPearls.Sort();
+        var n2 = new Necklace(10, "my necklace");
+        //n2.ListOfPearls.Sort();
         Console.WriteLine(n2);
 
         Console.WriteLine(n1.Equals(n2));
@@ -38,7 +38,7 @@ class Program
         Console.WriteLine(n2.ListOfPearls[0]);
         Console.WriteLine(n3.ListOfPearls[0]);
 
-        //Console.WriteLine(n2.Equals(n3));
+        Console.WriteLine(n2.Equals(n3));
 
     }
 }
@@ -49,7 +49,7 @@ class Program
 //    har en copy constructor i Pearl som enkelt skapar en kopia av instansen
 // 3. Implementera operator == och != overload i Pearl och använd dessa i
 //    jämförelsen
-// 4. Implementera IComparable på Pearl, skapa ett halsband med 100 pärlor.
+// 4. Implementera IComparable på Pearl, skapa ett halsband med 10 pärlor.
 //    och sortera halsbandet först efter pärlornas storlek och sedan form 
 // 5. Implementera IEqutable på Necklace
 // 6. Skapa en copy constructor i Necklace

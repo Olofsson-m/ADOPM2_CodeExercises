@@ -27,6 +27,6 @@ namespace _11_interfaces.Models
         public string LastName { get; set; }
         public string Email { get; set; }
 
-        public IPerson Seed(SeedGenerator _seeder);
+        public IPerson Seed(SeedGenerator seeder);
     }
 }
