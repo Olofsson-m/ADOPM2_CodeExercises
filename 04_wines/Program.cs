@@ -1,4 +1,5 @@
-﻿using Seido.Utilities.SeedGenerator;
+﻿using Microsoft.AspNetCore.Http.Features;
+using Seido.Utilities.SeedGenerator;
 
 namespace _04_wines;
 
@@ -6,7 +7,33 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        SeedGenerator rnd = new SeedGenerator();
+
+        WineBottle w1 = new WineBottle(rnd);
+        WineCellar wines = new WineCellar("My wine cellar.");
+
+        Console.WriteLine(w1);
+
+        w1.Price = 699.99m;
+
+        Console.WriteLine(w1.ToString());
+        for (int i = 0; i < 10; i++)
+        {
+            wines.wineCellar.Add(new WineBottle(rnd));
+        }
+
+        foreach (var item in wines.wineCellar)
+        {
+            Console.WriteLine(item.ToString());
+        }
+
+        var highestPrice = wines.wineCellar.OrderByDescending(p => p.Price).First();
+        var cheapestPrice = wines.wineCellar.OrderBy(p => p.Price).First();
+        
+        Console.WriteLine($"Most expensive: {highestPrice.Price}kr");
+        Console.WriteLine($"Cheapest: {cheapestPrice.Price}kr");
+
+        Console.WriteLine($"The winecellar is worth: {wines.Price}kr");
     }
 }
 //Exercise:
@@ -30,10 +57,9 @@ class Program
 //
 // 7. Vad är värdet av vinkällaren?
 //
-//
 // 8. Deklarera en contruktor som tillåter dig att själv bestämma alla Wine public properties
 //
-// 9.Deklarera en Copy constructor.
+// 9. Deklarera en Copy constructor.
 //
-// 10.Använd copy constructorn för att skapa en ny lista av 10 viner med samma
+// 10. Använd copy constructorn för att skapa en ny lista av 10 viner med samma
 //    innehåll som ursprungslistan
